@@ -1,0 +1,16 @@
+# app/controllers/organizations_controller.rb
+class OrganizationsController < ApplicationController
+  before_action :set_organization, only: [:show, :update, :destroy, :users]
+
+  # 組織に属しているユーザーを取得するアクション
+  def users
+    @users = @organization.users
+    render json: @users
+  end
+
+  private
+
+  def set_organization
+    @organization = Organization.find(params[:id])
+  end
+end
